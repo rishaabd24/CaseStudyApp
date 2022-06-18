@@ -1,0 +1,36 @@
+﻿@page
+@model Aspnet_Core_Identity.Pages.LoginModel
+@{
+}
+<div class="container mt-5">
+     <div class="row justify-content-center align-items-center">
+         <div class="col-sm-12 col-md-12 col-lg-4">
+             <h1 class="mb-3">Sign In</h1>
+             <hr class="divider" style="opacity:1.5; color:aqua"/>
+             <form method="post">
+                 <div class="mb-3">
+                     <label class="form-label" asp-for="Model.Email">Email Address</label>
+                     <input type="text" asp-for="Model.Email" class="form-control" />
+                     <span asp-validation-for="Model.Email" class="text-danger"></span>
+                 </div>
+                 <div class="mb-3">
+                     <label class="form-label" asp-for="Model.Password">Password</label>
+                     <input type="password" asp-for="Model.Password" class="form-control" />
+                     <span asp-validation-for="Model.Password" class="text-danger"></span>
+                 </div>
+                 <div class="mb-3 form-check">
+                     <input type="checkbox" asp-for="Model.RememberMe" class="form-check-input" />
+                     <label class="form-check-label" asp-for="Model.RememberMe">Remember Me</label>
+                 </div>
+                 <div class="mb-3">
+                     <button type="submit" class="btn btn-primary">Sign In</button>
+                 </div>
+             </form>
+             <hr class="divider" style="opacity:1.5; color:aqua"/>
+             <div class="mb-3">
+                 <h6><label>New User?</label></h6>
+                 <a asp-page="/Register" class="btn btn-primary"> Sign Up </a>
+             </div>
+         </div>
+     </div>
+</div>
