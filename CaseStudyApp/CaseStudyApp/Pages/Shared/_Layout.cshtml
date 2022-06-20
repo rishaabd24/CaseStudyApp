@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager 
+@inject UserManager<IdentityUser> UserManager
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +31,11 @@
                                     <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Privacy</a>
                                 </li>
                             </ul>
+                           
                             <ul class="navbar-nav d-flex justify-content-end">
+                                 <li class="nav-item">
+                                   <a id="manage" class="nav-link text-white" asp-area="" asp-page="/Manage" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                                 </li>
                                 <li class="nav-item">
                                     <a class="btn btn-primary" asp-area="" asp-page="/Logout">Logout</a>
                                 </li>
