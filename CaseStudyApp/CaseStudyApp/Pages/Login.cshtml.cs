@@ -22,7 +22,7 @@ namespace Aspnet_Core_Identity.Pages
         {
             if (ModelState.IsValid)
             {
-                var identityResult = await signInManager.PasswordSignInAsync(Model.Email, Model.Password, Model.RememberMe, false);
+                var identityResult = await signInManager.PasswordSignInAsync(Model.Email, Model.Password, Model.RememberMe, false); //one change here
                 if (identityResult.Succeeded)
                 {
                     if(returnUrl == null || returnUrl == "/")
@@ -34,7 +34,10 @@ namespace Aspnet_Core_Identity.Pages
                         return RedirectToPage("returnUrl");
                     }
                 }
-                ModelState.AddModelError("", "Username or password invalid");
+                else
+                {
+                    ModelState.AddModelError("", "Username or password invalid");
+                }
             }
             return Page();
         }

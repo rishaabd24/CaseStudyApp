@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CaseStudyApp.Migrations
 {
-    public partial class AddAuthentication : Migration
+    public partial class InitialAuthentication : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

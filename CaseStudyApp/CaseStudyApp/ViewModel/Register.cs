@@ -6,7 +6,7 @@ namespace Aspnet_Core_Identity.ViewModel
     {
         [Required]
         [DataType(DataType.Text)]
-        public string Username { get; set; }
+        public string Username { get; set; } //added a specific username field in Register as shown in the SS in the docx
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

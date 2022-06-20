@@ -26,7 +26,7 @@ namespace Aspnet_Core_Identity.Pages
             {
                 var user = new IdentityUser()
                 {
-                    UserName = Model.Username,
+                    UserName = Model.Email, //one change here
                     Email = Model.Email
                 };
                 var result = await userManager.CreateAsync(user, Model.Password);
