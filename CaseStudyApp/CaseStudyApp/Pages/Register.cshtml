@@ -1,5 +1,5 @@
 ﻿@page
-@model Aspnet_Core_Identity.Pages.RegisterModel
+@model CaseStudyApp.Pages.RegisterModel
 @{
     <div class="container mt-5">
         <div class="row justify-content-center align-items-center">
@@ -12,6 +12,21 @@
                         <label class="form-label" asp-for="Model.Username">Username</label>
                         <input type="text" asp-for="Model.Username" class="form-control" />
                         <span asp-validation-for="Model.Username" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Model.FirstName">First Name</label>
+                        <input type="text" asp-for="Model.FirstName" class="form-control" />
+                        <span asp-validation-for="Model.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Model.LastName">Last Name</label>
+                        <input type="text" asp-for="Model.LastName" class="form-control" />
+                        <span asp-validation-for="Model.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Model.PhoneNo">Phone Number</label>
+                        <input type="text" asp-for="Model.PhoneNo" class="form-control" />
+                        <span asp-validation-for="Model.PhoneNo" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" asp-for="Model.Email">Email Address</label>

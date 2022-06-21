@@ -1,18 +1,19 @@
-using Aspnet_Core_Identity.ViewModel;
+using CaseStudyApp.Data;
+using CaseStudyApp.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
 
-namespace Aspnet_Core_Identity.Pages
+namespace CaseStudyApp.Pages
 {
     public class RegisterModel : PageModel
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
         [BindProperty]
         public Register Model { get; set; }
-        public RegisterModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public RegisterModel(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -24,10 +25,14 @@ namespace Aspnet_Core_Identity.Pages
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser()
+                var user = new AppUser()
                 {
                     UserName = Model.Email, //one change here
-                    Email = Model.Email
+                    Email = Model.Email,
+                    PhoneNumber = Model.PhoneNo,
+                    FirstName = Model.FirstName,
+                    LastName = Model.LastName,
+                    DisplayUsername = Model.Username,
                 };
                 var result = await userManager.CreateAsync(user, Model.Password);
                 if (result.Succeeded)

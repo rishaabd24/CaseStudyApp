@@ -1,17 +1,18 @@
-using Aspnet_Core_Identity.ViewModel;
+using CaseStudyApp.Data;
+using CaseStudyApp.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
 
-namespace Aspnet_Core_Identity.Pages
+namespace CaseStudyApp.Pages
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly SignInManager<AppUser> signInManager;
         [BindProperty]
         public Login Model { get; set; }
-        public LoginModel(SignInManager<IdentityUser> signInManager)
+        public LoginModel(SignInManager<AppUser> signInManager)
         {
             this.signInManager = signInManager;
         }

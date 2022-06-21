@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
 
-namespace Aspnet_Core_Identity.Pages
+namespace CaseStudyApp.Pages
 {
     public class LogoutModel : PageModel
     {

@@ -1,4 +1,5 @@
-﻿using Aspnet_Core_Identity.Model;
+﻿using CaseStudyApp.Data;
+using CaseStudyApp.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aspnet_Core_Identity
+namespace CaseStudyApp
 {
     public class Startup
     {
@@ -28,7 +29,7 @@ namespace Aspnet_Core_Identity
         {
             services.AddRazorPages();
             services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AuthConnectionString")));
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
+            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
             services.ConfigureApplicationCookie(config =>
             {
                 config.LoginPath = "/Login";

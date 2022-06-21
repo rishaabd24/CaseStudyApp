@@ -1,14 +1,15 @@
+using CaseStudyApp.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
 
-namespace Aspnet_Core_Identity.Pages
+namespace CaseStudyApp.Pages
 {
     public class LogoutModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> signInManager;
-        public LogoutModel(SignInManager<IdentityUser> signInManager)
+        private readonly SignInManager<AppUser> signInManager;
+        public LogoutModel(SignInManager<AppUser> signInManager)
         {
             this.signInManager = signInManager;
         }

@@ -1,10 +1,10 @@
-using Aspnet_Core_Identity.ViewModel;
+using CaseStudyApp.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
 
-namespace Aspnet_Core_Identity.Pages
+namespace CaseStudyApp.Pages
 {
     public class LoginModel : PageModel
     {

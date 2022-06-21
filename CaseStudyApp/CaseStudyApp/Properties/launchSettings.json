@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Aspnet_Core_Identity": {
+    "CaseStudyApp": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

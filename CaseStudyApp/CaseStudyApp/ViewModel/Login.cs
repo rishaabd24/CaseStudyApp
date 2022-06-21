@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Aspnet_Core_Identity.ViewModel
+namespace CaseStudyApp.ViewModel
 {
     public class Login
     {

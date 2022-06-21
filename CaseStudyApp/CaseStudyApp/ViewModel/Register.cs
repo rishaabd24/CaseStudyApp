@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Aspnet_Core_Identity.ViewModel
+namespace CaseStudyApp.ViewModel
 {
     public class Register
     {
@@ -17,6 +17,10 @@ namespace Aspnet_Core_Identity.ViewModel
         [DataType(DataType.Password)]
         [Compare(nameof(Password),ErrorMessage ="Passwords don't match")]
         public string ConfirmPassword { get; set; }
-
+        [Phone]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNo { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

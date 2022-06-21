@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aspnet_Core_Identity
+namespace CaseStudyApp
 {
     public class Program
     {
