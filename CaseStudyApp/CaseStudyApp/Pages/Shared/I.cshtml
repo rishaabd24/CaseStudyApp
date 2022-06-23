@@ -14,9 +14,24 @@
     </div>
 }
 <form method="post" enctype="multipart/form-data">
-    <input type="file" name="files" multiple required />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $("body").on("click", "#btnUpload", function () {
+        var allowedFiles = [".pbix"];
+        var fileUpload = $("#fileUpload");
+        var lblError = $("#lblError");
+        var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(" + allowedFiles.join('|') + ")$");
+        if (!regex.test(fileUpload.val().toLowerCase())) {
+            lblError.html("Please upload files having extensions: <b>" + allowedFiles.join(', ') + "</b> only.");
+            return false;
+        }
+        lblError.html('');
+        return true;
+    });
+</script>
+    <input id="fileUpload" type="file" name="files" accept=".pbix" multiple required />
     <input type="text" autocomplete="off" placeholder="Enter File Description" name="description" required />
-    <button type="submit" class="btn btn-primary" asp-controller="File" asp-action="UploadToFileSystem">Upload to File System</button>
+    <button id="btnUpload" type="submit" class="btn btn-primary" asp-controller="File" asp-action="UploadToFileSystem">Upload to File System</button>
     <button class="btn btn-success" type="submit" asp-controller="File" asp-action="UploadToDatabase">Upload to Database</button>
 </form>
 <hr />

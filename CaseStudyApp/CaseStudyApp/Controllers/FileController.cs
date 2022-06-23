@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace CaseStudyApp.Controllers
     public class FileController : Controller
     {
         private readonly AuthDbContext context;
-
+        public string ErrorMessage { get; set; }
         public FileController(AuthDbContext context)
         {
             this.context = context;
@@ -65,22 +66,32 @@ namespace CaseStudyApp.Controllers
             {
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 var extension = Path.GetExtension(file.FileName);
-                var fileModel = new FileOnDatabaseModel
+                var supportedTypes = new[] { "pbix" };
+                if (!supportedTypes.Contains(extension))
                 {
-                    CreatedOn = DateTime.UtcNow,
-                    FileType = file.ContentType,
-                    Extension = extension,
-                    Name = fileName,
-                    Description = description
-                };
-                using (var dataStream = new MemoryStream())
-                {
-                    await file.CopyToAsync(dataStream);
-                    fileModel.Data = dataStream.ToArray();
+                    ErrorMessage = "File Extension Is InValid - Only Upload WORD/PDF/EXCEL/TXT File";
+                    //throw an error
                 }
-                context.FilesOnDatabase.Add(fileModel);
-                context.SaveChanges();
-            }
+
+                var fileModel = new FileOnDatabaseModel
+                    {
+                        CreatedOn = DateTime.UtcNow,
+                        FileType = file.ContentType,
+                        Extension = extension,
+                        Name = fileName,
+                        Description = description
+                    };
+                    using (var dataStream = new MemoryStream())
+                    {
+                        await file.CopyToAsync(dataStream);
+                        fileModel.Data = dataStream.ToArray();
+                    }
+                    context.FilesOnDatabase.Add(fileModel);
+                    context.SaveChanges();
+                    
+
+                }
+
             TempData["Message"] = "File successfully uploaded to Database";
             return RedirectToAction("I");
         }
@@ -136,5 +147,8 @@ namespace CaseStudyApp.Controllers
             TempData["Message"] = $"Removed {file.Name + file.Extension} successfully from Database.";
             return RedirectToAction("I");
         }
+
+        
+        
     }
 }
