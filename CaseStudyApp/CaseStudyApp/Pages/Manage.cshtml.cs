@@ -85,6 +85,13 @@ namespace CaseStudyApp.Pages
                     user.LastName = Model.LastName;
                 }
             }
+            if(Model.Username != user.DisplayUsername)
+            {
+                if(Model.Username != null)
+                {
+                    user.DisplayUsername = Model.Username;
+                }
+            }
             if(Model.Email != user.Email)
             {
                 if (Model.Email != null)
@@ -95,14 +102,17 @@ namespace CaseStudyApp.Pages
             }
             var result = await userManager.UpdateAsync(user);
             await signInManager.RefreshSignInAsync(user);
-            if (result.Succeeded)
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                //return RedirectToPage();
+            }
+            else
             {
                 StatusMessage = "User details updated";
-                return RedirectToPage();
-            }
-            foreach(var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
             }
             return RedirectToPage();
         }

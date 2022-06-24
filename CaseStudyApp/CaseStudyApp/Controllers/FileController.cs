@@ -1,6 +1,9 @@
-﻿using CaseStudyApp.Model;
+﻿using CaseStudyApp.Data;
+using CaseStudyApp.Model;
 using CaseStudyApp.Models;
+using CaseStudyApp.Pages;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,14 +18,18 @@ namespace CaseStudyApp.Controllers
     public class FileController : Controller
     {
         private readonly AuthDbContext context;
+        private readonly UserManager<AppUser> _userManager;
+        public bool flag = true;
         public string ErrorMessage { get; set; }
-        public FileController(AuthDbContext context)
+        public FileController(AuthDbContext context, UserManager<AppUser> userManager)
         {
             this.context = context;
+            _userManager = userManager;
         }
         public async Task<IActionResult> I()
         {
             var fileuploadViewModel = await LoadAllFiles();
+            ViewBag.userid = _userManager.GetUserName(HttpContext.User);
             ViewBag.Message = TempData["Message"];
             return View(fileuploadViewModel);
         }
@@ -45,12 +52,13 @@ namespace CaseStudyApp.Controllers
                     }
                     var fileModel = new FileOnFileSystemModel
                     {
-                        CreatedOn = DateTime.UtcNow,
+                        CreatedOn = DateTime.Now,
                         FileType = file.ContentType,
                         Extension = extension,
                         Name = fileName,
                         Description = description,
-                        FilePath = filePath
+                        FilePath = filePath,
+                        UploadedBy = _userManager.GetUserName(HttpContext.User),
                     };
                     context.FilesOnFileSystem.Add(fileModel);
                     context.SaveChanges();
@@ -66,33 +74,37 @@ namespace CaseStudyApp.Controllers
             {
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 var extension = Path.GetExtension(file.FileName);
-                var supportedTypes = new[] { "pbix" };
-                if (!supportedTypes.Contains(extension))
+                string supportedTypes = ".pbix";
+                if (!supportedTypes.Equals(extension))
                 {
-                    ErrorMessage = "File Extension Is InValid - Only Upload WORD/PDF/EXCEL/TXT File";
-                    //throw an error
+                    flag = false;
+                    break;
                 }
-
                 var fileModel = new FileOnDatabaseModel
-                    {
-                        CreatedOn = DateTime.UtcNow,
+                { 
+                        CreatedOn = DateTime.Now,
                         FileType = file.ContentType,
                         Extension = extension,
                         Name = fileName,
-                        Description = description
-                    };
-                    using (var dataStream = new MemoryStream())
-                    {
-                        await file.CopyToAsync(dataStream);
-                        fileModel.Data = dataStream.ToArray();
-                    }
-                    context.FilesOnDatabase.Add(fileModel);
-                    context.SaveChanges();
-                    
-
+                        Description = description,
+                        UploadedBy = _userManager.GetUserName(HttpContext.User)
+                };
+                using (var dataStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(dataStream);
+                    fileModel.Data = dataStream.ToArray();
                 }
-
-            TempData["Message"] = "File successfully uploaded to Database";
+                context.FilesOnDatabase.Add(fileModel);
+                context.SaveChanges();
+            }
+            if (flag == true)
+            {
+                TempData["Message"] = "File successfully uploaded to Database";
+            }
+            else
+            {
+                TempData["Message"] = "File Extension Is InValid - Only Upload .pbix File";
+            }
             return RedirectToAction("I");
         }
 
