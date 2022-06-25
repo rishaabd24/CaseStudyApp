@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h4>Files on Database</h4>
+@if (Model.FilesOnDatabase.Count == 0)
+{
+    <caption>No Records Found</caption>
+}
+else
+{ <div class="container-576">
+
+     <caption>List of Files on Database</caption>
+    <table class="table table-striped" style="width:25%">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in Model.FilesOnDatabase)
+            {
+                <tr>
+                    <th>@file.Id</th>
+                    <td>@file.Name</td>
+             
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+   
+}
