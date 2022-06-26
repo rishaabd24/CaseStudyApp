@@ -6,12 +6,12 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using CaseStudyApp.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CaseStudyApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
-
-
     {
         private readonly AuthDbContext context;
         private readonly UserManager<AppUser> _userManager;
