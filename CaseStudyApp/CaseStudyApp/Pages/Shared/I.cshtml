@@ -32,7 +32,7 @@
     <input id="fileUpload" type="file" name="files" accept=".pbix" multiple required />
     <input type="text" autocomplete="off" placeholder="Enter File Description" name="description" required />
     <button id="btnUpload" type="submit" class="btn btn-primary" asp-controller="File" asp-action="UploadToFileSystem">Upload to File System</button>
-    <button class="btn btn-success" type="submit" asp-controller="File" asp-action="UploadToDatabase">Upload to Database</button>
+    <!-- <button class="btn btn-success" type="submit" asp-controller="File" asp-action="UploadToDatabase">Upload to Database</button> -->
 </form>
 <hr />
 <h4>Files on File System</h4>
@@ -64,8 +64,8 @@ else
                     <td>@file.FileType</td>
                     <td>@file.CreatedOn</td>
                     <td>
-                        <a type="button" class="btn btn-primary" asp-controller="File" asp-action="DownloadFileFromFileSystem" asp-route-id="@file.Id">Download</a>
-                        <a type="button" class="btn btn-danger" asp-controller="File" asp-action="DeleteFileFromFileSystem" asp-route-id="@file.Id">Delete</a>
+                        <button class="btn btn-primary" asp-controller="File" asp-action="DownloadFileFromFileSystem" asp-route-id="@file.Id">Download</button>
+                        <button class="btn btn-danger" asp-controller="File" asp-action="DeleteFileFromFileSystem" asp-route-id="@file.Id">Delete</button>
                     </td>
                 </tr>
             }
@@ -74,7 +74,7 @@ else
 }
 
 
-<hr />
+<!-- <hr />
 <h4>Files on Database</h4>
 @if (Model.FilesOnDatabase.Count == 0)
 {
@@ -111,5 +111,5 @@ else
             }
 
         </tbody>
-    </table>
+    </table> -->
 }
