@@ -21,9 +21,8 @@ namespace CaseStudyApp.Pages
         public void OnGet()
         {
         }
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync()
         {
-            returnUrl ??= Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var user = new AppUser()
@@ -39,7 +38,7 @@ namespace CaseStudyApp.Pages
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToPage("returnUrl");
+                    return RedirectToPage("Index");
                 }
                 foreach(var error in result.Errors)
                 {

@@ -5,8 +5,7 @@ namespace CaseStudyApp.ViewModel
     public class Login
     {
         [Required]
-        [EmailAddress]
-        //[DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
