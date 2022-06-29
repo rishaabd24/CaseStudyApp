@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using CaseStudyApp.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
-using System.Linq;
 
 namespace CaseStudyApp.Controllers
 {
@@ -33,7 +32,6 @@ namespace CaseStudyApp.Controllers
             return View(fileuploadViewModel);
         }
 
-       
         private async Task<FileUploadViewModel> LoadAllFiles()
         {
             var viewModel = new FileUploadViewModel();
@@ -41,19 +39,5 @@ namespace CaseStudyApp.Controllers
             viewModel.FilesOnFileSystem = await context.FilesOnFileSystem.ToListAsync();
             return viewModel;
         }
-
-        [HttpGet]
-        public PartialViewResult _details(int id)
-        {
-        return PartialView("_details",context.FilesOnFileSystem.First(x => x.Id == id));
-       }
-
-        public ActionResult Details(int id)
-        {
-            //get model from database
-            return PartialView(context.FilesOnFileSystem.First(x => x.Id == id));
-        }
-
-
     }
 }
