@@ -81,13 +81,13 @@ namespace CaseStudyApp.Controllers
                     break;
                 }
                 var fileModel = new FileOnDatabaseModel
-                { 
-                        CreatedOn = DateTime.Now,
-                        FileType = file.ContentType,
-                        Extension = extension,
-                        Name = fileName,
-                        Description = description,
-                        UploadedBy = _userManager.GetUserName(HttpContext.User)
+                {
+                    CreatedOn = DateTime.Now,
+                    FileType = file.ContentType,
+                    Extension = extension,
+                    Name = fileName,
+                    Description = description,
+                    UploadedBy = _userManager.GetUserName(HttpContext.User)
                 };
                 using (var dataStream = new MemoryStream())
                 {
@@ -160,7 +160,7 @@ namespace CaseStudyApp.Controllers
             return RedirectToAction("I");
         }
 
-        
-        
+
+
     }
 }
