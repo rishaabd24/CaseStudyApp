@@ -4,6 +4,7 @@
 @{
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+
 <h3> Welcome! </h3>
 @if (Model.FilesOnFileSystem.Count == 0)
 {
@@ -31,68 +32,16 @@ else
                         <tr>
                             <!-- <th>@file.Id</th> -->
                             <td>@file.Name</td>
+                          
+                            <td><a href='@Url.Action("Details", new { id=file.Id })' class="ajax">Details</a></td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="flex-child green" style="flex:3;">
-        <div class="bg-dark text-white" style="padding:5px;">
-            <h6>Document Metadata</h6>
-        </div>
-        <div class="flex-container" style="display:flex;padding:5%;">
-            <div class="flex-child" style="flex:auto;">
-                <div class="bg-secondary text-white" style="width:50%;margin-top:10px;padding:3%;border-radius:10px;">
-                    <h6>Created By:</h6>
-                </div>
-                <div class="bg-secondary text-white" style="width:50%;padding:3%;margin-top:30px;border-radius:10px;">
-                    <h6>Created On:</h6>
-                </div>
-                <div class="bg-secondary text-white" style="width:50%;padding:3%;margin-top:30px; border-radius:10px;">
-                    <h6>File Info:</h6>
-                </div>
-            </div>
-            <div class="flex-child" style="flex:5;">
-                <div class="font-weight-bold" style="padding:3%">
-                    <h6>Rishaab Dhar</h6>
-                </div>
-                <div class="text-dark" style="padding:3%;">
-                    <p>27/06/2021</p>
-                </div>
-                <div class="text-dark" style="width:50%;padding:3%;">
-                    <p>File.pbix</p>
-                </div>
-            </div>
-        </div>
-        <!-- <table class="table table-striped" align="left">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>File Type</th>
-                    <th>Created On</th>
-                    <th>Actions</th>
-                    </tr>
-            </thead>
-            <tbody>
-                @*@foreach (var file in Model.FilesOnFileSystem)
-                {
-                    <tr>
-                        <th>@file.Id</th>
-                        <td>@file.Name</td>
-                        <td>@file.Description</td>
-                        <td>@file.FileType</td>
-                        <td>@file.CreatedOn</td>
-                        <td>
-                            <a type="button" class="btn btn-primary" asp-controller="File" asp-action="DownloadFileFromFileSystem" asp-route-id="@file.Id">Download</a>
-                            <a type="button" class="btn btn-danger" asp-controller="File" asp-action="DeleteFileFromFileSystem" asp-route-id="@file.Id">Delete</a>
-                        </td>
-                    </tr>
-                }*@
-            </tbody>
-        </table> -->
-    </div>
-</div>
+   
+
+        <div id="TargetDiv"></div>
+ </div>
 }
