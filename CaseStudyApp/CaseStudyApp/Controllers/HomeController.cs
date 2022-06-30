@@ -46,7 +46,7 @@ namespace CaseStudyApp.Controllers
         public PartialViewResult _details(int id)
         {
         return PartialView("_details",context.FilesOnFileSystem.First(x => x.Id == id));
-       }
+        }
 
         public ActionResult Details(int id)
         {

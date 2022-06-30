@@ -13,7 +13,7 @@
 else
 { <div class="flex-container" style="display:flex;padding-top:2%;">
     <div class="flex-child magenta" style="flex:auto;">
-        <div class="bg-dark text-white" style="width:50%;padding:5px; border:5px white;">
+        <div class="bg-dark text-white" style="width:50%;padding:5px;">
         <h6>List of Processed Files</h6>
         </div>
         <div>
@@ -31,17 +31,18 @@ else
                     {
                         <tr>
                             <!-- <th>@file.Id</th> -->
-                            <td>@file.Name</td>
-                          
-                            <td><a href='@Url.Action("Details", new { id=file.Id })' class="ajax">Details</a></td>
+                            <!-- <td>@file.Name</td> -->
+                            <td><a href='@Url.Action("Details", new { id=file.Id })' class="ajax">@file.Name</a></td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
-   
-
-        <div id="TargetDiv"></div>
+    <div id="TargetDiv" class="flex-child" style="flex:3;" >
+        <div class="bg-dark text-white" style="padding:5px;">
+            <h6>Document Metadata</h6>
+        </div>
+    </div>
  </div>
 }
