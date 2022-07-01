@@ -37,7 +37,7 @@ namespace CaseStudyApp.Pages
                 }
                 else
                 {
-                    ModelState.AddModelError("LogOnError", "Username or password invalid");
+                    ModelState.AddModelError("LogOnError", "The Username or Password is incorrect. Please try again!");
 
                 }
             }
