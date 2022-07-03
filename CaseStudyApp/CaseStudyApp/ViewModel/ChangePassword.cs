@@ -15,7 +15,7 @@ namespace CaseStudyApp.ViewModel
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm New Password")]
-        [Compare("NewPwd", ErrorMessage ="Passwords dont match")]
+        [Compare("NewPwd", ErrorMessage = "Passwords dont match")]
         public string ConfirmPwd { get; set; }
     }
 }
