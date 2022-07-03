@@ -106,7 +106,7 @@ namespace CaseStudyApp.Pages
             {
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError("", error.Description);
+                    ModelState.AddModelError("UpdateError", error.Description);
                 }
                 //return RedirectToPage();
             }
@@ -114,7 +114,7 @@ namespace CaseStudyApp.Pages
             {
                 StatusMessage = "User details updated";
             }
-            return RedirectToPage();
+            return Page();
         }
     }
 }
