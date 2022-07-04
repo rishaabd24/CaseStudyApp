@@ -44,27 +44,27 @@ namespace CaseStudyApp.Controllers
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 var filePath = Path.Combine(basePath, file.FileName);
                 var extension = Path.GetExtension(file.FileName);
-                if (!System.IO.File.Exists(filePath))
-                {
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await file.CopyToAsync(stream);
-                    }
-                    var fileModel = new FileOnFileSystemModel
-                    {
-                        CreatedOn = DateTime.Now,
-                        FileType = file.ContentType,
-                        Extension = extension,
-                        Name = fileName,
-                        Description = description,
-                        FilePath = filePath,
-                        UploadedBy = _userManager.GetUserName(HttpContext.User),
-                    };
-                    context.FilesOnFileSystem.Add(fileModel);
-                    context.SaveChanges();
-                }
+               if (!System.IO.File.Exists(filePath))
+               {
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+                        var fileModel = new FileOnFileSystemModel
+                        {
+                            CreatedOn = DateTime.Now,
+                            FileType = file.ContentType,
+                            Extension = extension,
+                            Name = fileName,
+                            Description = description,
+                            FilePath = filePath,
+                            UploadedBy = _userManager.GetUserName(HttpContext.User),
+                        };
+                        context.FilesOnFileSystem.Add(fileModel);
+                        context.SaveChanges();
+               }
             }
-            TempData["Message"] = "File successfully uploaded to File System.";
+            TempData["Message"] = "File successfully uploaded to File System";
             return RedirectToAction("I");
         }
         [HttpPost]
