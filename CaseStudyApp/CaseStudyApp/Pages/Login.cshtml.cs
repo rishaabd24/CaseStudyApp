@@ -26,7 +26,7 @@ namespace CaseStudyApp.Pages
                 var identityResult = await signInManager.PasswordSignInAsync(Model.Email, Model.Password, Model.RememberMe, false); //one change here
                 if (identityResult.Succeeded)
                 {
-                    if(returnUrl == null || returnUrl == "/")
+                    if (returnUrl == null || returnUrl == "/")
                     {
                         return RedirectToPage("Index");
                     }
@@ -37,7 +37,8 @@ namespace CaseStudyApp.Pages
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Username or password invalid");
+                    ModelState.AddModelError("LogOnError", "The Username or Password is incorrect. Please try again!");
+
                 }
             }
             return Page();

@@ -39,7 +39,7 @@ namespace CaseStudyApp.Pages
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await userManager.GetUserAsync(User);
-            if(user == null)
+            if (user == null)
             {
                 return NotFound($"Unable to load User with ID '{userManager.GetUserId(User)}'");
             }
@@ -59,7 +59,7 @@ namespace CaseStudyApp.Pages
                 return Page();
             }
             var phoneNo = await userManager.GetPhoneNumberAsync(user);
-            if(Model.Phone != phoneNo)
+            if (Model.Phone != phoneNo)
             {
                 if (Model.Phone != null)
                 {
@@ -71,28 +71,28 @@ namespace CaseStudyApp.Pages
                     }
                 }
             }
-            if(Model.FirstName != user.FirstName)
+            if (Model.FirstName != user.FirstName)
             {
                 if (Model.FirstName != null)
                 {
                     user.FirstName = Model.FirstName;
                 }
             }
-            if(Model.LastName != user.LastName)
+            if (Model.LastName != user.LastName)
             {
                 if (Model.LastName != null)
                 {
                     user.LastName = Model.LastName;
                 }
             }
-            if(Model.Username != user.DisplayUsername)
+            if (Model.Username != user.DisplayUsername)
             {
-                if(Model.Username != null)
+                if (Model.Username != null)
                 {
                     user.DisplayUsername = Model.Username;
                 }
             }
-            if(Model.Email != user.Email)
+            if (Model.Email != user.Email)
             {
                 if (Model.Email != null)
                 {
@@ -106,7 +106,7 @@ namespace CaseStudyApp.Pages
             {
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError("", error.Description);
+                    ModelState.AddModelError("UpdateError", error.Description);
                 }
                 //return RedirectToPage();
             }
@@ -114,7 +114,7 @@ namespace CaseStudyApp.Pages
             {
                 StatusMessage = "User details updated";
             }
-            return RedirectToPage();
+            return Page();
         }
     }
 }

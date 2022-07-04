@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@ 
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h3> Welcome! </h3>
+@if (Model.FilesOnFileSystem.Count == 0)
+{
+    <caption>No Records Found</caption>
+}
+else
+{ <div class="flex-container" style="display:flex;padding-top:2%;">
+    <div class="flex-child magenta" style="flex:auto;">
+        <div class="bg-dark text-white" style="width:50%;padding:5px;">
+        <h6>List of Processed Files</h6>
+        </div>
+        <div>
+            <table class="table table-striped" style="width:50%;padding:10px; border:1px solid grey;">
+                <caption>List of Uploaded Files on File System</caption>
+                <thead>
+                    <tr>
+                        <!-- <th>#</th> --> 
+                        <th>Name</th>
+              
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var file in Model.FilesOnFileSystem)
+                    {
+                        <tr>
+                            <!-- <th>@file.Id</th> -->
+                            <!-- <td>@file.Name</td> -->
+                            <td><a href='@Url.Action("Details", new { id=file.Id })' class="ajax">@file.Name</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="TargetDiv" class="flex-child" style="flex:3;" >
+        <div class="bg-dark text-white" style="padding:5px;">
+            <h6>Document Metadata</h6>
+        </div>
+    </div>
+ </div>
+}
