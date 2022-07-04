@@ -44,27 +44,40 @@ namespace CaseStudyApp.Controllers
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 var filePath = Path.Combine(basePath, file.FileName);
                 var extension = Path.GetExtension(file.FileName);
-               if (!System.IO.File.Exists(filePath))
-               {
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
+                string supportedTypes = ".pbix";
+                if (!supportedTypes.Equals(extension))
+                {
+                    flag = false;
+                    break;
+                }
+                if (!System.IO.File.Exists(filePath))
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
                             await file.CopyToAsync(stream);
-                        }
-                        var fileModel = new FileOnFileSystemModel
-                        {
-                            CreatedOn = DateTime.Now,
-                            FileType = file.ContentType,
-                            Extension = extension,
-                            Name = fileName,
-                            Description = description,
-                            FilePath = filePath,
-                            UploadedBy = _userManager.GetUserName(HttpContext.User),
-                        };
-                        context.FilesOnFileSystem.Add(fileModel);
-                        context.SaveChanges();
-               }
+                    }
+                    var fileModel = new FileOnFileSystemModel
+                    {
+                        CreatedOn = DateTime.Now,
+                        FileType = file.ContentType,
+                        Extension = extension,
+                        Name = fileName,
+                        Description = description,
+                        FilePath = filePath,
+                        UploadedBy = _userManager.GetUserName(HttpContext.User),
+                    };
+                    context.FilesOnFileSystem.Add(fileModel);
+                    context.SaveChanges();
+                }
             }
-            TempData["Message"] = "File successfully uploaded to File System";
+            if (flag == true)
+            {
+                TempData["Message"] = "File successfully uploaded to Database";
+            }
+            else
+            {
+                TempData["Message"] = "File Extension Is InValid - Only Upload .pbix File";
+            }
             return RedirectToAction("I");
         }
         [HttpPost]

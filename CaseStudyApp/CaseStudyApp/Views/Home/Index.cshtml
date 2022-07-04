@@ -4,7 +4,6 @@
 @{
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-
 <h3> Welcome! </h3>
 @if (Model.FilesOnFileSystem.Count == 0)
 {
@@ -32,7 +31,9 @@ else
                         <tr>
                             <!-- <th>@file.Id</th> -->
                             <!-- <td>@file.Name</td> -->
-                            <td><a href='@Url.Action("Details", new { id=file.Id })' class="ajax">@file.Name</a></td>
+                            <td>
+                                <a href='@Url.Action("Details", new { id=file.Id })' class="ajax">@file.Name</a>
+                            </td>
                         </tr>
                     }
                 </tbody>
