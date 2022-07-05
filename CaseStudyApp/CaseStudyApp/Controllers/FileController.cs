@@ -26,7 +26,7 @@ namespace CaseStudyApp.Controllers
             this.context = context;
             _userManager = userManager;
         }
-        public async Task<IActionResult> I()
+        public async Task<IActionResult> File()
         {
             var fileuploadViewModel = await LoadAllFiles();
             ViewBag.userid = _userManager.GetUserName(HttpContext.User);
@@ -78,7 +78,7 @@ namespace CaseStudyApp.Controllers
             {
                 TempData["Message"] = "File Extension Is InValid - Only Upload .pbix File";
             }
-            return RedirectToAction("I");
+            return RedirectToAction("File");
         }
         [HttpPost]
         public async Task<IActionResult> UploadToDatabase(List<IFormFile> files, string description)
@@ -118,7 +118,7 @@ namespace CaseStudyApp.Controllers
             {
                 TempData["Message"] = "File Extension Is InValid - Only Upload .pbix File";
             }
-            return RedirectToAction("I");
+            return RedirectToAction("File");
         }
 
         private async Task<FileUploadViewModel> LoadAllFiles()
@@ -161,7 +161,7 @@ namespace CaseStudyApp.Controllers
             context.FilesOnFileSystem.Remove(file);
             context.SaveChanges();
             TempData["Message"] = $"Removed {file.Name + file.Extension} successfully from File System.";
-            return RedirectToAction("I");
+            return RedirectToAction("File");
         }
         public async Task<IActionResult> DeleteFileFromDatabase(int id)
         {
@@ -170,7 +170,7 @@ namespace CaseStudyApp.Controllers
             context.FilesOnDatabase.Remove(file);
             context.SaveChanges();
             TempData["Message"] = $"Removed {file.Name + file.Extension} successfully from Database.";
-            return RedirectToAction("I");
+            return RedirectToAction("File");
         }
 
         
