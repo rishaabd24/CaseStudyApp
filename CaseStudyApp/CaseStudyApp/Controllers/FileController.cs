@@ -80,62 +80,13 @@ namespace CaseStudyApp.Controllers
             }
             return RedirectToAction("File");
         }
-        [HttpPost]
-        public async Task<IActionResult> UploadToDatabase(List<IFormFile> files, string description)
-        {
-            foreach (var file in files)
-            {
-                var fileName = Path.GetFileNameWithoutExtension(file.FileName);
-                var extension = Path.GetExtension(file.FileName);
-                string supportedTypes = ".pbix";
-                if (!supportedTypes.Equals(extension))
-                {
-                    flag = false;
-                    break;
-                }
-                var fileModel = new FileOnDatabaseModel
-                { 
-                        CreatedOn = DateTime.Now,
-                        FileType = file.ContentType,
-                        Extension = extension,
-                        Name = fileName,
-                        Description = description,
-                        UploadedBy = _userManager.GetUserName(HttpContext.User)
-                };
-                using (var dataStream = new MemoryStream())
-                {
-                    await file.CopyToAsync(dataStream);
-                    fileModel.Data = dataStream.ToArray();
-                }
-                context.FilesOnDatabase.Add(fileModel);
-                context.SaveChanges();
-            }
-            if (flag == true)
-            {
-                TempData["Message"] = "File successfully uploaded to Database";
-            }
-            else
-            {
-                TempData["Message"] = "File Extension Is InValid - Only Upload .pbix File";
-            }
-            return RedirectToAction("File");
-        }
-
         private async Task<FileUploadViewModel> LoadAllFiles()
         {
             var viewModel = new FileUploadViewModel();
-            viewModel.FilesOnDatabase = await context.FilesOnDatabase.ToListAsync();
             viewModel.FilesOnFileSystem = await context.FilesOnFileSystem.ToListAsync();
             return viewModel;
         }
 
-        public async Task<IActionResult> DownloadFileFromDatabase(int id)
-        {
-
-            var file = await context.FilesOnDatabase.Where(x => x.Id == id).FirstOrDefaultAsync();
-            if (file == null) return null;
-            return File(file.Data, file.FileType, file.Name + file.Extension);
-        }
         public async Task<IActionResult> DownloadFileFromFileSystem(int id)
         {
 
@@ -162,18 +113,6 @@ namespace CaseStudyApp.Controllers
             context.SaveChanges();
             TempData["Message"] = $"Removed {file.Name + file.Extension} successfully from File System.";
             return RedirectToAction("File");
-        }
-        public async Task<IActionResult> DeleteFileFromDatabase(int id)
-        {
-
-            var file = await context.FilesOnDatabase.Where(x => x.Id == id).FirstOrDefaultAsync();
-            context.FilesOnDatabase.Remove(file);
-            context.SaveChanges();
-            TempData["Message"] = $"Removed {file.Name + file.Extension} successfully from Database.";
-            return RedirectToAction("File");
-        }
-
-        
-        
+        }        
     }
 }

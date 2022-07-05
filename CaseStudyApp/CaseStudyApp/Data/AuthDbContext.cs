@@ -15,8 +15,6 @@ namespace CaseStudyApp.Model
         {
             base.OnModelCreating(builder);
         }
-
-        public DbSet<FileOnDatabaseModel> FilesOnDatabase { get; set; }
         public DbSet<FileOnFileSystemModel> FilesOnFileSystem { get; set; }
     }
 

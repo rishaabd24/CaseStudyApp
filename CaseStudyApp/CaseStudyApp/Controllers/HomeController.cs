@@ -33,16 +33,12 @@ namespace CaseStudyApp.Controllers
             return View(fileuploadViewModel);
         }
 
-
         private async Task<FileUploadViewModel> LoadAllFiles()
         {
             var viewModel = new FileUploadViewModel();
-            viewModel.FilesOnDatabase = await context.FilesOnDatabase.ToListAsync();
             viewModel.FilesOnFileSystem = await context.FilesOnFileSystem.ToListAsync();
             return viewModel;
         }
-
-       
 
         public ActionResult Details(int id)
         {
