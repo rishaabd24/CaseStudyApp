@@ -33,6 +33,7 @@ else
                             <!-- <td>@file.Name</td> -->
                             <td>
                                 <a href='@Url.Action("Details", new { id=file.Id })' class="ajax">@file.Name</a>
+                                 <a type="button" class="btn btn-primary" asp-controller="File" asp-action="DownloadFileFromFileSystem" asp-route-id="@file.Id">Download</a>
                             </td>
                         </tr>
                     }
