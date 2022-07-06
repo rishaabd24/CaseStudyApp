@@ -21,6 +21,7 @@
 </script>  
 
 <h3> Welcome! </h3>
+<hr class="divider" style="opacity:2; color:aqua"/>
 @if (Model.FilesOnFileSystem.Count == 0)
 {
     <caption>No Records Found</caption>
@@ -33,7 +34,7 @@ else
         </div>
         <div>
             <table class="table table-striped" style="width:50%;padding:10px; border:1px solid grey;">
-                @*<caption>List of Uploaded Files on File System</caption>*@
+                <caption>List of Uploaded Files on File System</caption>
                 <thead>
                     <tr>
                         <!-- <th>#</th> --> 
