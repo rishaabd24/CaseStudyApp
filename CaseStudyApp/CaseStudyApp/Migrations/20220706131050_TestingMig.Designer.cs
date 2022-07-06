@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CaseStudyApp.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20220624092550_TestingUpload")]
-    partial class TestingUpload
+    [Migration("20220706131050_TestingMig")]
+    partial class TestingMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,39 +93,6 @@ namespace CaseStudyApp.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("CaseStudyApp.Models.FileOnDatabaseModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("Data")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Extension")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UploadedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FilesOnDatabase");
                 });
 
             modelBuilder.Entity("CaseStudyApp.Models.FileOnFileSystemModel", b =>
