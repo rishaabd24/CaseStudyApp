@@ -27,7 +27,7 @@ ASP.NET Core 5 with C#, Microsoft SQL Server as database, Authorization using Ra
 ![Login](https://user-images.githubusercontent.com/63904466/177482580-f9be5aa1-eb94-43e2-8f04-6b926ef95a7d.png)
 
 ### Sign Up page
-![signup](https://user-images.githubusercontent.com/63904466/177482679-55d077be-1133-4856-a36c-be195544db70.png)
+![image](https://user-images.githubusercontent.com/63904466/177527462-1fa6c4b5-ac87-427a-b136-ca15fcae5310.png)
 
 ### Home Page
 ![home](https://user-images.githubusercontent.com/63904466/177482720-30b58165-7f9b-4ef1-9ec5-454b693ff47b.png)
