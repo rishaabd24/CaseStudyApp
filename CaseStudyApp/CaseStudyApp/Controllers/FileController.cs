@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace CaseStudyApp.Controllers
 {
+    //Controller for File related operations
     public class FileController : Controller
     {
         private readonly AuthDbContext context;
@@ -83,11 +84,11 @@ namespace CaseStudyApp.Controllers
             }
             if (flag == true)
             {
-                TempData["Message"] = "File successfully uploaded";
+                TempData["Message"] = "True";
             }
             else
             {
-                TempData["Message"] = "File Extension Is InValid - Only Upload .pbix File";
+                TempData["Message"] = "False";
             }
             return RedirectToAction("File");
         }
@@ -125,7 +126,7 @@ namespace CaseStudyApp.Controllers
             }
             context.FilesOnFileSystem.Remove(file);
             context.SaveChanges();
-            TempData["Message"] = $"Removed {file.Name + file.Extension} successfully from File System.";
+            TempData["Message"] = "Removed";
             return RedirectToAction("File");
         }        
     }

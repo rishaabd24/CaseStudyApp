@@ -39,8 +39,7 @@ else
             <table class="table table-striped table-success" style="width:70%;padding:10px; border:1px solid grey;">
                 <caption>List of Uploaded Files on File System</caption>
                 <thead>
-                    <tr>
-                        <!-- <th>#</th> --> 
+                    <tr> 
                         <th>Name</th>
                         <th>Download</th>
               
@@ -50,8 +49,6 @@ else
                     @foreach (var file in Model.FilesOnFileSystem)
                     {
                         <tr>
-                            <!-- <th>file.Id</th> -->
-                            <!-- <td>file.Name</td> -->
                             <td>
                                 <a href='@Url.Action("Details", new { id=file.Id })' class="ajax" style="padding-right:5px;">@file.Name</a></td>
                                 <td>

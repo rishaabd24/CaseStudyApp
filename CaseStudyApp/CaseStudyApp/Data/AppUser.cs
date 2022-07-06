@@ -2,6 +2,7 @@
 
 namespace CaseStudyApp.Data
 {
+    //Model for a user which inherits IdentityUser
     public class AppUser : IdentityUser
     {
         public string FirstName { get; set; }

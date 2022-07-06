@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CaseStudyApp.Models
 {
+    //Model for Password change
     public class ChangePasswordViewModel
     {
         [Required]
