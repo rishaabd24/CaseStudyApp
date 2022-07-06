@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CaseStudyApp.Controllers
 {
+    //Controller for password change
     public class AccountController : Controller
     {
         private readonly AuthDbContext context;
@@ -27,7 +28,7 @@ namespace CaseStudyApp.Controllers
 
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
-        {
+        {//To change the user password
             if (ModelState.IsValid)
             {
                 var user = await userManager.GetUserAsync(User);

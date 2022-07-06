@@ -2,6 +2,7 @@
 
 namespace CaseStudyApp.Models
 {
+    //Model for File properties
     public abstract class FileModel
     {
         public int Id { get; set; }

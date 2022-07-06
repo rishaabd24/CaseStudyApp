@@ -11,6 +11,7 @@ using System.Linq;
 
 namespace CaseStudyApp.Controllers
 {
+    //Controller for Home page view
     [Authorize]
     public class HomeController : Controller
     {

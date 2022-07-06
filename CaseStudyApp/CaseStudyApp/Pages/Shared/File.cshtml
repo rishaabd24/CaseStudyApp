@@ -1,4 +1,5 @@
-﻿@using CaseStudyApp.Models
+﻿@*File Upload page*@
+@using CaseStudyApp.Models
 @model FileUploadViewModel
 @{
     ViewData["Title"] = "Index";
@@ -9,9 +10,27 @@
 <hr class="divider" style="opacity:2; color:aqua"/>
 @if (ViewBag.Message != null)
 {
-    <div class="alert alert-success alert-dismissible" style="margin-top:20px">
-        @ViewBag.Message
-    </div>
+    @if(ViewBag.Message == "True")
+    {
+        <div class="alert alert-success alert-dismissible" style="margin-top:20px">
+            <h5>File successfully uploaded!</h5>
+        </div>
+    }
+    else
+    {
+        @if (ViewBag.Message == "False")
+        {
+            <div class="alert alert-danger alert-dismissible" style="margin-top:20px">
+            <h5>Invalid file Type! Only .PBIX files supported!</h5>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger alert-dismissible" style="margin-top:20px">
+                <h5>File removed from File system!</h5>
+            </div>
+        }
+    }
 }
 <form method="post" enctype="multipart/form-data">
     @*Form to input file*@
@@ -32,7 +51,6 @@ else
     <table class="table table-striped table-success">
         <thead>
             <tr>
-                @*<th>#</th>*@
                 <th>Name</th>
                 <th>Description</th>
                 <th>File Type</th>
@@ -44,7 +62,6 @@ else
             @foreach (var file in Model.FilesOnFileSystem)
             {
                 <tr>
-                    @*<th>@file.Id</th>*@
                     <td>@file.Name</td>
                     <td>@file.Description</td>
                     <td>@file.FileType</td>
