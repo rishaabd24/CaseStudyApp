@@ -26,13 +26,13 @@
             </div>
             <div class="flex-child" style="flex:5;">
                 <div class="font-weight-bold" style="padding:3%">
-                    <h6>@Html.DisplayFor(m => m.UploadedBy)</h6>
+                    <h6>@Html.DisplayFor(f => f.UploadedBy)</h6>
                 </div>
                  <div class="text-dark" style="padding:3%;">
-                    <p>@Html.DisplayFor(m => m.CreatedOn)</p>
+                    <p>@Html.DisplayFor(f => f.CreatedOn)</p>
                 </div>
                 <div class="text-dark" style="width:50%;padding:3%;">
-                    <p>@Html.DisplayFor(m => m.Name)@Html.DisplayFor(m => m.Extension)</p>
+                    <p>@Html.DisplayFor(f => f.Name)@Html.DisplayFor(f => f.Extension)</p>
                     <!-- <button class="btn btn-primary" asp-controller="File" asp-action="DownloadFileFromFileSystem" asp-route-id="file.Id">Download</button> -->
                 </div>
             </div>

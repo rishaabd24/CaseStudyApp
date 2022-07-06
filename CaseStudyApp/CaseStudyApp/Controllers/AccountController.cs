@@ -19,18 +19,11 @@ namespace CaseStudyApp.Controllers
             this.signInManager= signInManager;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public IActionResult ChangePassword()
         {
             return View();
         }
-
-        
 
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -47,9 +40,7 @@ namespace CaseStudyApp.Controllers
                 var result = await userManager.ChangePasswordAsync(user,
                     model.CurrentPassword, model.NewPassword);
 
-                // The new password did not meet the complexity rules or
-                // the current password is incorrect. Add these errors to
-                // the ModelState and rerender ChangePassword view
+                // Adding errors to model state and returning view
                 if (!result.Succeeded)
                 {
                     foreach (var error in result.Errors)

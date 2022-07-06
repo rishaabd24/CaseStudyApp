@@ -72,7 +72,7 @@ namespace CaseStudyApp.Controllers
             }
             if (flag == true)
             {
-                TempData["Message"] = "File successfully uploaded to Database";
+                TempData["Message"] = "File successfully uploaded";
             }
             else
             {
