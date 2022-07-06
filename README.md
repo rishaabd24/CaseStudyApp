@@ -2,8 +2,7 @@
 
 ## Technologies
 
-ASP.NET Core 5 with C#, Microsoft SQL Server as database, EntityFramework Code First
-Authorization using Razor Pages, Model-View Controllers and Razor Views
+ASP.NET Core 5 with C#, Microsoft SQL Server as database, Authorization using Razor Pages and ASP Identity, and File Management System using Model-View-Controller code first approach.
 
 
 ## Features
