@@ -50,8 +50,7 @@ namespace CaseStudyApp.Controllers
                     return View();
                 }
 
-                // Upon successfully changing the password refresh sign-in cookie
-                
+              
                 return View("ChangePasswordConfirmation");
             }
 

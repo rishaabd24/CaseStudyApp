@@ -21,11 +21,15 @@ namespace CaseStudyApp.Controllers
         private readonly UserManager<AppUser> _userManager;
         public bool flag = true;
         public string ErrorMessage { get; set; }
+
+        // Injecting context 
         public FileController(AuthDbContext context, UserManager<AppUser> userManager)
         {
             this.context = context;
             _userManager = userManager;
         }
+
+        // Loading all the available files and passing the view model to the view.
         public async Task<IActionResult> File()
         {
             var fileuploadViewModel = await LoadAllFiles();
@@ -33,12 +37,17 @@ namespace CaseStudyApp.Controllers
             ViewBag.Message = TempData["Message"];
             return View(fileuploadViewModel);
         }
+
+        // Action method that inputs list of files of type IFormFIle and description of type string
         [HttpPost]
         public async Task<IActionResult> UploadToFileSystem(List<IFormFile> files, string description)
         {
+            // Extracting file path, file name, and file extension for all files to be uploaded
             foreach (var file in files)
             {
+                
                 var basePath = Path.Combine(Directory.GetCurrentDirectory() + "\\Files\\");
+                // Checking if the base path directory exists, else creating it 
                 bool basePathExists = System.IO.Directory.Exists(basePath);
                 if (!basePathExists) Directory.CreateDirectory(basePath);
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
@@ -56,6 +65,8 @@ namespace CaseStudyApp.Controllers
                     {
                             await file.CopyToAsync(stream);
                     }
+
+                    // Creating a new FileOnFileSystemModel and inserting into DB via context
                     var fileModel = new FileOnFileSystemModel
                     {
                         CreatedOn = DateTime.Now,
@@ -87,6 +98,7 @@ namespace CaseStudyApp.Controllers
             return viewModel;
         }
 
+        // Gets records from DB table and copies file data into memory object, returning for download
         public async Task<IActionResult> DownloadFileFromFileSystem(int id)
         {
 
@@ -100,6 +112,8 @@ namespace CaseStudyApp.Controllers
             memory.Position = 0;
             return File(memory, file.FileType, file.Name + file.Extension);
         }
+
+        // Deletes file from file system and removes record from DB table
         public async Task<IActionResult> DeleteFileFromFileSystem(int id)
         {
 
