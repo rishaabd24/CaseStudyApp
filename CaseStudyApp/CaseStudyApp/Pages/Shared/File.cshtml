@@ -14,7 +14,7 @@
     </div>
 }
 <form method="post" enctype="multipart/form-data">
-
+    @*Form to input file*@
     <input id="fileUpload" type="file" name="files" accept=".pbix" multiple required />
     <input type="text" autocomplete="off" placeholder="Enter File Description" name="description" required />
     <button id="btnUpload" type="submit" class="btn btn-primary" asp-controller="File" asp-action="UploadToFileSystem">Upload</button>
@@ -58,44 +58,3 @@ else
         </tbody>
     </table>
 }
-
-
-<hr class="divider" style="opacity:2; color:aqua"/>
-<!-- <h4>Files on Database</h4> -->
-@*@if (Model.FilesOnDatabase.Count == 0)
-{
-    <caption>No Records Found</caption>
-}*@
-@*else
-{
-    <caption>List of Files on Database</caption>
-    <table class="table table-striped table-success">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>File Type</th>
-                <th>Created On</th>
-                <th>Actions</th>
-            </tr>
-        </thead>*@
-        <!-- <tbody> -->
-            @*@foreach (var file in Model.FilesOnDatabase)
-            {
-                <tr>
-                    @*<th>@file.Id</th>*@
-                   <!-- <td>file.Name</td>
-                    <td>file.Description</td>
-                    <td>file.FileType</td>
-                    <td>file.CreatedOn</td>
-                    <td>
-                        <a btn-type="button" class="btn btn-primary" asp-controller="File" asp-action="DownloadFileFromDatabase" asp-route-id="file.Id">Download</a>
-                        <a btn-type="button" class="btn btn-danger" asp-controller="File" asp-action="DeleteFileFromDatabase" asp-route-id="file.Id">Delete</a>
-                    </td>
-                </tr> -->
-           @*@ }*@
-
-       <!-- </tbody> -->
-    <!-- </table> -->
-@*}*@

@@ -2,7 +2,9 @@
 @{
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+
+@*Jquery-Ajax script to redirect to partial view "Details.cshtml" on click*@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 <script src="/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
 <script>
     $(document).ready(function () {
@@ -20,6 +22,7 @@
     });
 </script>  
 
+@*Displays list of files, if any, with download and display metadata functionality*@
 <h3> Welcome! </h3>
 <hr class="divider" style="opacity:2; color:aqua"/>
 @if (Model.FilesOnFileSystem.Count == 0)
@@ -58,6 +61,8 @@ else
             </table>
         </div>
     </div>
+
+@*Target div into which metadata is loaded via partial view, Details*@
     <div id="TargetDiv" class="flex-child" style="flex:3;" >
         <div class="bg-dark text-white" style="padding:5px;">
             <h6>Document Metadata</h6>
