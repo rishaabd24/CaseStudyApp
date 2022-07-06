@@ -14,13 +14,13 @@ Authorization using Razor Pages, Model-View Controllers and Razor Views
 
 ## To run on your machine
 
-### 1. Clone the repository on your local machine
-### 2. Open the Project file(.sln) in Microsoft Visual Studio
-### 3. Navigate to "appsettings.json" and enter the name of your SQL Server under the "AuthConnectionString": "Server= _your server name_;..."
-### 4. Go to Tools -> NuGet Package Manager -> Package Manager Console
-### 5. In the Package Manager Console, run the command "Add-Migration YourMigrationName"
-### 6. After Step 5, run the command "Update-Database" in the Package Manager Console and wait for "Done." confirmation.
-### 7. Click on the green Run Project button.
+1. Clone the repository on your local machine
+2. Open the Project file(.sln) in Microsoft Visual Studio
+3. Navigate to "appsettings.json" and enter the name of your SQL Server under the "AuthConnectionString": "Server= _your server name_;..."
+4. Go to Tools -> NuGet Package Manager -> Package Manager Console
+5. In the Package Manager Console, run the command "Add-Migration YourMigrationName"
+6. After Step 5, run the command "Update-Database" in the Package Manager Console and wait for "Done." confirmation.
+7. Click on the green Run Project button.
 
 ## Screenshots
 
@@ -33,7 +33,7 @@ Authorization using Razor Pages, Model-View Controllers and Razor Views
 ### Home Page
 ![home](https://user-images.githubusercontent.com/63904466/177482720-30b58165-7f9b-4ef1-9ec5-454b693ff47b.png)
 
-### Uploaf File Page
+### Upload File Page
 ![upload](https://user-images.githubusercontent.com/63904466/177482778-7b880d38-9baf-484b-8b7e-1509d7e1cc47.png)
 
 ### User Management Page
