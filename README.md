@@ -14,7 +14,7 @@ ASP.NET Core 5 with C#, Microsoft SQL Server as database, Authorization using Ra
 ## To run on your machine
 
 1. Clone the repository on your local machine
-2. Open the Project file(.sln) in Microsoft Visual Studio
+2. Open the Project file(CaseStudyApp.sln) in Microsoft Visual Studio
 3. Navigate to "appsettings.json" and enter the name of your SQL Server under the "AuthConnectionString": "Server= _your server name_;..."
 4. Go to Tools -> NuGet Package Manager -> Package Manager Console
 5. In the Package Manager Console, run the command "Add-Migration YourMigrationName"
